@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact, deleteContact } from 'redux/contactsSlice';
 import { setFilter } from 'redux/filterSlice';
+import { PhoneForm } from './PhonebookForm';
 
 export const Phonebook = () => {
   const contactsList = useSelector(state => {
@@ -39,7 +40,7 @@ export const Phonebook = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit={handleAddContact}>
+      <PhoneForm onSubmit={handleAddContact}>
         <input
           type="text"
           placeholder="Name"
@@ -55,7 +56,7 @@ export const Phonebook = () => {
         <button type="submit" onClick={handleAddContact}>
           Add contact
         </button>
-      </form>
+      </PhoneForm>
       <h3>Find contacts by name</h3>
       <input
         type="text"
