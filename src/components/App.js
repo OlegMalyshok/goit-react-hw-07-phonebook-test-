@@ -1,9 +1,10 @@
+import { Container } from './App.styled';
 import { Phonebook } from './Phonebook';
 
 export const App = () => {
   return (
-    <div>
+    <Container>
       <Phonebook />
-    </div>
+    </Container>
   );
 };

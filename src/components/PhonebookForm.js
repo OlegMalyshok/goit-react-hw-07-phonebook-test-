@@ -1,6 +1,8 @@
 import { Formik } from 'formik';
 import { StyledForm, StyledField, StyledError } from './PhonebookForm.styled';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -18,20 +20,42 @@ const schema = Yup.object().shape({
 });
 
 export const PhoneForm = () => {
-  return (
-    <Formik validationSchema={schema}>
-      <StyledForm>
-        <label>
-          Name
-          <StyledField name="name" />
-          <StyledError name="name" component="div" />
-        </label>
-        <label>
-          Number
-          <StyledField name="number" />
-          <StyledError name="number" component="div" />
-        </label>
+  const dispatch = useDispatch();
 
+  const handleAddContact = (values, { resetForm }) => {
+    dispatch(addContact(values.name, values.number));
+    resetForm();
+  };
+
+  return (
+    <Formik
+      initialValues={{ name: '', number: '' }}
+      validationSchema={schema}
+      onSubmit={handleAddContact}
+    >
+      <StyledForm>
+        <div>
+          <label>Name</label>
+          <StyledField
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Name"
+            required
+          />
+          <StyledError name="name" className="error" />
+        </div>
+        <div>
+          <label>Number</label>
+          <StyledField
+            type="tel"
+            id="number"
+            name="number"
+            placeholder="Number"
+            required
+          />
+          <StyledError name="number" className="error" />
+        </div>
         <button type="submit">Add contact</button>
       </StyledForm>
     </Formik>
