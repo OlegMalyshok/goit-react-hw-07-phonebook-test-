@@ -15,10 +15,10 @@ const persistConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer); // Використовуйте persistReducer для кореневого редюсера
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer, // Використовуйте персистований редюсер
+  reducer: persistedReducer,
 });
 
 export const persistor = persistStore(store);

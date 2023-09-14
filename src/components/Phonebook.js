@@ -22,7 +22,10 @@ export const Phonebook = () => {
     numberInput = event.target.value;
   };
 
-  const handleAddContact = () => dispatch(addContact(nameInput, numberInput));
+  const handleAddContact = event => {
+    event.preventDefault();
+    dispatch(addContact(nameInput, numberInput));
+  };
 
   const handleDeleteContact = id => {
     dispatch(deleteContact(id));
@@ -36,18 +39,20 @@ export const Phonebook = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <form>
+      <form onSubmit={handleAddContact}>
         <input
           type="text"
           placeholder="Name"
+          required
           onChange={handleNameChange}
         ></input>
         <input
-          type="text"
+          type="tel"
           placeholder="Number"
+          required
           onChange={handleNumberChange}
         ></input>
-        <button type="button" onClick={handleAddContact}>
+        <button type="submit" onClick={handleAddContact}>
           Add contact
         </button>
       </form>
