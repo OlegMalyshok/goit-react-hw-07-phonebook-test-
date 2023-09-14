@@ -9,6 +9,7 @@ export const Phonebook = () => {
       contact.name.toLowerCase().includes(filter)
     );
   });
+
   const dispatch = useDispatch();
   let nameInput = '';
   let numberInput = '';
