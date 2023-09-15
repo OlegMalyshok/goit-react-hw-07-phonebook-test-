@@ -2,7 +2,7 @@ import { ContactFilter } from './ContactFilter';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contactsSlice';
 
-export const ListItem = () => {
+export const PhonebookFormList = () => {
   const contactsList = useSelector(state => {
     const filter = state.filter.toLowerCase();
     return state.contacts.filter(contact =>

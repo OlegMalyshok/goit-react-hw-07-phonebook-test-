@@ -19,7 +19,7 @@ const schema = Yup.object().shape({
     .max(50, 'Too Long!'),
 });
 
-export const PhoneForm = () => {
+export const PhonebookForm = () => {
   const dispatch = useDispatch();
 
   const handleAddContact = (values, { resetForm }) => {
