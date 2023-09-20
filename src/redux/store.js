@@ -1,36 +1,31 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { contactsReducer } from './contactsSlice';
 import { filterReducer } from './filterSlice';
-import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
 
-const rootReducer = combineReducers({
-  contacts: contactsReducer,
-  filter: filterReducer,
-});
+// const myMd1 = store => next => action => {
+//   console.log('myMd1', action);
+//   next(action);
+// };
 
-const persistConfig = {
-  key: 'root',
-  storage,
-};
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+// const myMd2 = store => next => action => {
+//   console.log('myMd2', action);
+//   next(action);
+// };
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    contacts: contactsReducer,
+    filter: filterReducer,
+  },
+
+  // middleware: getDefaultMiddleware => {
+  //   const defaultMd = getDefaultMiddleware();
+  //   return [...defaultMd, myMd1, myMd2];
+  // },
 });
 
-export const persistor = persistStore(store);
-
-// import { combineReducers, createStore } from 'redux';
-// import { devToolsEnhancer } from '@redux-devtools/extension';
-
-// const rootReducer = combineReducers({
-//   contacts: contactsReducer,
-//   filter: filterReducer,
-// });
-
-// const enhancer = devToolsEnhancer();
-
-// export const store = createStore(rootReducer, enhancer);
+// const fetchTasks = () => async dispatch => {
+//   try {
+//     const response = await axios.get("/tasks");
+//   } catch (e) {}
+// };
