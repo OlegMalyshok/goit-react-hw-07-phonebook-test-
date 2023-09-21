@@ -1,11 +1,11 @@
+import { deleteContact } from 'redux/operations';
 import { ContactFilter } from './ContactFilter';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/contactsSlice';
 
 export const PhonebookFormList = () => {
   const contactsList = useSelector(state => {
     const filter = state.filter.toLowerCase();
-    return state.contacts.filter(contact =>
+    return state.contacts.items.filter(contact =>
       contact.name.toLowerCase().includes(filter)
     );
   });
